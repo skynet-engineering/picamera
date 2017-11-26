@@ -69,47 +69,51 @@ from __future__ import (
 # Make Py2's str equivalent to Py3's
 str = type('')
 
-from picamera.exc import (
-    PiCameraWarning,
-    PiCameraDeprecated,
-    PiCameraFallback,
-    PiCameraAlphaStripping,
-    PiCameraResizerEncoding,
-    PiCameraError,
-    PiCameraRuntimeError,
-    PiCameraClosed,
-    PiCameraNotRecording,
-    PiCameraAlreadyRecording,
-    PiCameraValueError,
-    PiCameraMMALError,
-    PiCameraPortDisabled,
-    mmal_check,
-    )
-from picamera.mmalobj import PiResolution, PiFramerateRange
-from picamera.camera import PiCamera
-from picamera.display import PiDisplay
-from picamera.frames import PiVideoFrame, PiVideoFrameType
-from picamera.encoders import (
-    PiEncoder,
-    PiVideoEncoder,
-    PiImageEncoder,
-    PiRawMixin,
-    PiCookedVideoEncoder,
-    PiRawVideoEncoder,
-    PiOneImageEncoder,
-    PiMultiImageEncoder,
-    PiRawImageMixin,
-    PiCookedOneImageEncoder,
-    PiRawOneImageEncoder,
-    PiCookedMultiImageEncoder,
-    PiRawMultiImageEncoder,
-    )
-from picamera.renderers import (
-    PiRenderer,
-    PiOverlayRenderer,
-    PiPreviewRenderer,
-    PiNullSink,
-    )
-from picamera.streams import PiCameraCircularIO, CircularIO, BufferIO
-from picamera.color import Color, Red, Green, Blue, Hue, Lightness, Saturation
-
+try:
+    from picamera.exc import (
+        PiCameraWarning,
+        PiCameraDeprecated,
+        PiCameraFallback,
+        PiCameraAlphaStripping,
+        PiCameraResizerEncoding,
+        PiCameraError,
+        PiCameraRuntimeError,
+        PiCameraClosed,
+        PiCameraNotRecording,
+        PiCameraAlreadyRecording,
+        PiCameraValueError,
+        PiCameraMMALError,
+        PiCameraPortDisabled,
+        mmal_check,
+        )
+    from picamera.mmalobj import PiResolution, PiFramerateRange
+    from picamera.camera import PiCamera
+    from picamera.display import PiDisplay
+    from picamera.frames import PiVideoFrame, PiVideoFrameType
+    from picamera.encoders import (
+        PiEncoder,
+        PiVideoEncoder,
+        PiImageEncoder,
+        PiRawMixin,
+        PiCookedVideoEncoder,
+        PiRawVideoEncoder,
+        PiOneImageEncoder,
+        PiMultiImageEncoder,
+        PiRawImageMixin,
+        PiCookedOneImageEncoder,
+        PiRawOneImageEncoder,
+        PiCookedMultiImageEncoder,
+        PiRawMultiImageEncoder,
+        )
+    from picamera.renderers import (
+        PiRenderer,
+        PiOverlayRenderer,
+        PiPreviewRenderer,
+        PiNullSink,
+        )
+    from picamera.streams import PiCameraCircularIO, CircularIO, BufferIO
+    from picamera.color import Color, Red, Green, Blue, Hue, Lightness, Saturation
+except OSError:
+    # If not running on a Raspberry Pi, export a mock PiCamera rather than erroring.
+    # Native PiCamera functionality will be available as normal if running on a Pi.
+    from picamera.mock import PiCamera

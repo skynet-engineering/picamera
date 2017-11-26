@@ -30,6 +30,7 @@ coverage
 
 # Ignore virtualenvwrapper bits
 .venv
+env/
 
 #Translations
 *.mo
